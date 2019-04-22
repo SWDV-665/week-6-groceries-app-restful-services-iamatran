@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Grocery Ionic App</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <h3 class = "no-item" text-center *ngIf="loadItems().length === 0">No item availible on the list!</h3>
+
+  <ion-list>
+    <ion-item-sliding *ngFor="let item of loadItems(); let i = index">
+      <!--let item of items is calling JS array, let i = index provides number for index-->
+      <ion-item>
+        <ion-label>
+          <h2>{{item.name}}</h2>
+          <p>{{item.quantity}}</p>
+        </ion-label>
+      </ion-item>
+
+      <ion-item-options>
+
+        <button (click)="editItem(item, i)" ion-button color="primary" icon-start>
+          <ion-icon name="create"></ion-icon>
+          Edit
+        </button>
+
+        <button (click)="shareItem(item, i)" ion-button color="light" icon-start>
+          <ion-icon name="share"></ion-icon>
+          Share
+        </button>
+
+        <button (click)="removeItem(item, i)" ion-button color="danger" icon-start>
+          <!--in the click function of removeItems(item, i), we are passing in the item and the index-->
+          <ion-icon name="trash"></ion-icon>
+          Delete
+        </button>
+
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+    <ion-fab right bottom>
+      <button (click)="addItem()" ion-fab>
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-fab>
+
+</ion-content>
+
+
+
+
